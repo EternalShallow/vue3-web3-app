@@ -20,6 +20,9 @@ const server = (mode: string) => ({
 });
 // https://vitejs.dev/config/
 export default ({ mode }) => defineConfig({
+  define: {
+    'process.env': {},
+  },
   base: loadEnv(mode, process.cwd()).VITE_BASE_PATH,
   server: server(mode),
   preview: server(mode),

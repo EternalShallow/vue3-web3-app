@@ -1,5 +1,3 @@
-const rules = require('./.eslintrc.rules.js');
-
 module.exports = {
   root: true,
   env: {
@@ -11,14 +9,6 @@ module.exports = {
     'airbnb-base',
     'plugin:@typescript-eslint/recommended',
   ],
-  // settings: {
-  //   'import/resolver': {
-  //     alias: {
-  //       map: [['@', './src']],
-  //       extensions: ['.ts', '.tsx'], // ***2.解决引入问题
-  //     },
-  //   },
-  // },
   parserOptions: {
     parser: '@typescript-eslint/parser',
     ecmaVersion: 'latest',
@@ -36,6 +26,9 @@ module.exports = {
     ],
     'global-require': 'off',
     'no-use-before-define': 'off',
-    ...rules,
+    'no-underscore-dangle': 'off',
+    'max-len': ['error', 300],
+    'no-mixed-operators': 'off',
+    'no-console': 'off',
   },
 };

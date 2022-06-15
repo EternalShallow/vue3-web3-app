@@ -17,6 +17,7 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "isolatedModules": true,
+
     "plugins": [{ "name": "typescript-plugin-css-modules" }],
     "paths": {
       "@/*": ["src/*"]
