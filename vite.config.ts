@@ -3,6 +3,8 @@ import { loadEnv, defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import legacy from '@vitejs/plugin-legacy';
+// import styleImport from 'vite-plugin-style-import';
+
 import viteCompression from 'vite-plugin-compression';
 // import Components from 'unplugin-vue-components/vite';
 // import { VantResolver } from 'unplugin-vue-components/resolvers';
@@ -18,6 +20,8 @@ const server = (mode: string) => ({
   },
 });
 // https://vitejs.dev/config/
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 export default ({ mode }) => defineConfig({
   define: {
     'process.env': {},
@@ -59,6 +63,15 @@ export default ({ mode }) => defineConfig({
         },
       },
     }),
+    // styleImport({
+    //   libs: [
+    //     {
+    //       libraryName: 'vant',
+    //       esModule: true,
+    //       resolveStyle: (name) => `vant/es/${name}/style`,
+    //     },
+    //   ],
+    // }),
     // Components({
     //   resolvers: [VantResolver()],
     // }),

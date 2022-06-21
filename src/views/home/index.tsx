@@ -1,8 +1,7 @@
 import {
-  defineComponent, getCurrentInstance, onMounted, reactive, watch, computed, ref,
+  defineComponent, getCurrentInstance, onMounted, watch, computed,
 } from 'vue';
 import { useStore } from 'vuex';
-import initWeb3 from '@/hooks/connectWallet.ts';
 
 export default defineComponent({
   setup() {
@@ -21,11 +20,10 @@ export default defineComponent({
       });
     });
     const store = useStore();
-    console.log(store.state.walletAddress);
     const walletAddress = computed(() => store.state.walletAddress);
     watch(walletAddress, (newVal, oldVal) => {
       console.log('newVal, oldVal', newVal, oldVal);
-    }, { immediate: true, deep: true });
+    }, { immediate: false, deep: true });
     return () => (
       <>
         <van-button type="primary" >{ store.state.walletAddressShort }</van-button>
