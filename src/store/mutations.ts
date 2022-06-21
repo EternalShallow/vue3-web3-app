@@ -1,8 +1,7 @@
 const mutations = {
-  changeAccount(state: { account: any; }, payload: any) {
-    console.log(payload);
-    // eslint-disable-next-line no-param-reassign
-    state.account = payload;
+  changeAccount(state: { walletAddress: string; walletAddressShort: string }, payload: any) {
+    state.walletAddress = payload;
+    state.walletAddressShort = `${payload.substr(0, 5)}...${payload.substr(payload.length - 5, payload.length)}`;
   },
 };
 export default mutations;

@@ -1,4 +1,5 @@
 const state = {
-  account: '',
+  walletAddress: '',
+  walletAddressShort: '',
 };
 export default state;

@@ -24,6 +24,7 @@ module.exports = {
         devDependencies: true,
       },
     ],
+    'no-param-reassign': 'off',
     'global-require': 'off',
     'no-use-before-define': 'off',
     'no-underscore-dangle': 'off',
