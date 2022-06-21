@@ -1,3 +1,4 @@
+import './utils/lib/polyfills.ts';
 import { createApp } from 'vue';
 
 import 'amfe-flexible';
@@ -17,8 +18,7 @@ const app = createApp(App)
   .use(store)
   .use(router)
   .use(Button);
-
 app.mount('#app');
-export default {
-  app,
-};
+console.log(app);
+app.config.globalProperties.$common = 'common';
+export default app;

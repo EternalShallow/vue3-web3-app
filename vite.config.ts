@@ -6,7 +6,6 @@ import legacy from '@vitejs/plugin-legacy';
 import viteCompression from 'vite-plugin-compression';
 // import Components from 'unplugin-vue-components/vite';
 // import { VantResolver } from 'unplugin-vue-components/resolvers';
-
 // 添加这一句
 const server = (mode: string) => ({
   host: '0.0.0.0',
@@ -34,6 +33,11 @@ export default ({ mode }) => defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
+      process: 'process/browser',
+      stream: 'stream-browserify',
+      zlib: 'browserify-zlib',
+      util: 'util',
+      web3: path.resolve(__dirname, './node_modules/web3/dist/web3.min.js'),
     },
   },
   css: {

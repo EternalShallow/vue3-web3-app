@@ -1,71 +1,101 @@
 import getProvider from '../utils/web3/getWeb3.ts';
-import app from '../main.ts';
+import _app from '../main.ts';
+import _store from '../store/index.ts';
 
 let promiseSelf: Promise<unknown>;
-// let rejectSelf: (reason?: any) => void;
 let resolveSelf: (reason?: any) => void;
+let rejectSelf: (reason?: any) => void;
 
-async function initEth() {
+let connectPromise: Promise<unknown>;
+let connectResolve: (reason?: any) => void;
+let connectRejects: (reason?: any) => void;
+
+function initEth() {
   const { web3Http, library } = getProvider();
-  app.config.globalProperties.$web3_http = web3Http;
-  app.config.globalProperties.$library = library;
+  _app.config.globalProperties.$web3_http = web3Http;
+  _app.config.globalProperties.$library = library;
 }
 
-export default async function initWeb3() {
-  console.log(app);
-  await initEth();
-  promiseSelf = new Promise((resolve, reject) => {
-    // rejectSelf = reject;
-    resolveSelf = resolve;
+export async function connectWallet() {
+  connectPromise = new Promise((resolve, reject) => {
+    connectResolve = resolve;
+    connectRejects = reject;
   });
-  const networkVersion = parseInt(window.ethereum.networkVersion, 10);
-  console.log(networkVersion);
-  console.log(window.ethereum.networkVersion);
-  if (networkVersion !== 97 && networkVersion !== 56) {
-    resolveSelf({
-      code: 403,
-      message: 'please change BSC network!',
-      data: [],
-    });
-    return promiseSelf;
-  }
   try {
-    let accounts = [];
+    let accounts: string | any[] = [];
     if (typeof window.ethereum !== 'undefined') {
       // 请求账号授权
       try {
         accounts = await window.ethereum.enable();
       } catch (e) {
-        accounts = await window.ethereum.request({ method: 'eth_accounts' });
+        console.log(e);
+        if (e.code === 4001) {
+          connectRejects(e);
+        } else {
+          accounts = await window.ethereum.request({ method: 'eth_accounts' });
+        }
       }
     } else {
       try {
-        accounts = await app.config.globalProperties.$web3_http.eth.getAccounts();
+        accounts = await _app.config.globalProperties.$web3_http.eth.getAccounts();
       } catch (e) {
+        connectRejects({
+          code: 201,
+          message: 'get account error',
+        });
         console.log('get account error', e);
       }
     }
-    app.config.globalProperties.$account = accounts[0];
-    app.config.globalProperties.$accounts = accounts;
-    // await that.$store.dispatch('updateAccounts', accounts);
-    if (!accounts) {
-      setTimeout(() => {
-        initWeb3();
-      }, 500);
-    } else {
-      if (accounts.length < 1) {
-        console.log('no accounts');
-      }
-      resolveSelf({
+    if (accounts && accounts.length > 0) {
+      const walletAddr = accounts[0];
+      console.log(walletAddr);
+      _app.config.globalProperties.walletAddress = walletAddr;
+      _app.config.globalProperties.accounts = accounts;
+      connectResolve({
         code: 200,
         message: 'success',
         data: accounts,
       });
-      return promiseSelf;
+      await _store.dispatch('CHANGEACCOUNT', accounts[0]);
+      return connectPromise;
     }
+    connectRejects({
+      code: 201,
+      message: 'no account',
+    });
+    return connectPromise;
   } catch (err) {
     console.log(err);
-    resolveSelf(err);
+    connectRejects({
+      code: 202,
+      message: err,
+    });
+    return connectPromise;
+  }
+}
+
+export default async function initWeb3() {
+  initEth();
+  promiseSelf = new Promise((resolve, reject) => {
+    rejectSelf = reject;
+    resolveSelf = resolve;
+  });
+  const networkVersion = parseInt(window.ethereum.networkVersion, 10);
+  console.log(networkVersion, window.ethereum.networkVersion);
+  // if (networkVersion !== 97 && networkVersion !== 56) {
+  //   resolveSelf({
+  //     code: 403,
+  //     message: 'please change BSC network!',
+  //     data: [],
+  //   });
+  //   return promiseSelf;
+  // }
+  try {
+    const connectWalletResult = await connectWallet();
+    resolveSelf(connectWalletResult);
+    return promiseSelf;
+  } catch (e) {
+    rejectSelf(e);
     return promiseSelf;
   }
 }
