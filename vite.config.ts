@@ -23,6 +23,9 @@ const server = (mode: string) => ({
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 export default ({ mode }) => defineConfig({
+  esbuild: {
+    jsxInject: 'import React from \'react\'',
+  },
   define: {
     'process.env': {},
   },
