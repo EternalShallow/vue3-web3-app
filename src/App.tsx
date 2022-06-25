@@ -66,7 +66,7 @@ export default defineComponent({
             onClick={this.connectWalletEvent}
           >{connectWalletText}</van-button>
         </div>
-        <router-view/>
+        <router-view></router-view>
       </>
     );
   },

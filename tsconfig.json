@@ -21,6 +21,9 @@
     "plugins": [{ "name": "typescript-plugin-css-modules" }],
     "paths": {
       "@/*": ["src/*"]
+//      "@views/*": [
+//        "src/views/*"
+//      ]
     },
     "allowSyntheticDefaultImports": true
   },

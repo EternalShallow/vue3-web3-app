@@ -3,7 +3,7 @@ import {
 } from 'vue';
 
 export default defineComponent({
-  name: 'home',
+  name: 'record',
   setup() {
     const active = ref(0);
     const instance = getCurrentInstance();

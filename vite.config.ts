@@ -23,9 +23,9 @@ const server = (mode: string) => ({
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 export default ({ mode }) => defineConfig({
-  esbuild: {
-    jsxInject: 'import React from \'react\'',
-  },
+  // esbuild: {
+  //   jsxInject: 'import React from \'react\'',
+  // },
   define: {
     'process.env': {},
   },
@@ -40,6 +40,7 @@ export default ({ mode }) => defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
+      // '@views': path.resolve(__dirname, 'src/views'),
       process: 'process/browser',
       stream: 'stream-browserify',
       zlib: 'browserify-zlib',
