@@ -1,0 +1,158 @@
+@import "variables";
+@import "vant-self";
+@import "./fun.less";
+/*box 自适应伸缩样式*/
+.display-flex {
+  //display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+  display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+  ///*! autoprefixer: off */
+  display: -webkit-flex; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+  ///* autoprefixer: on */
+  display: -moz-flex; /* 老版本语法: Firefox (buggy) */
+  display: -ms-flexbox; /* 混合版本语法: IE 10 */
+}
+
+.box-flex1 {
+  -webkit-flex: 1; /* Chrome */
+  -ms-flex: 1; /* IE 10 */
+  flex: 1; /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  -webkit-box-flex: 1; /* OLD - iOS 6-, Safari 3.1-6 */
+  -moz-box-flex: 1; /* OLD - Firefox 19- */
+}
+
+.box-center {
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+}
+
+/*水平 垂直居中*/
+.box-center-X {
+  justify-content: center; /* 水平居中 */
+}
+
+/*垂直居中*/
+.box-center-Y {
+  align-items: center; /* 垂直居中 */
+}
+
+.box-center-end {
+  align-items: flex-end;
+}
+
+.box-center-start {
+  align-items: flex-start;
+}
+
+.box-around {
+  justify-content: space-around;
+}
+
+.box-end {
+  justify-content: flex-end;
+}
+
+.box-nowrap {
+  flex-wrap: wrap;
+}
+
+.box-column {
+  flex-direction: column;
+}
+
+.Page {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  overflow-x: hidden;
+  font-size: 24px;
+  line-height: 1.1;
+
+  .content {
+    overflow-y: scroll;
+    padding: 0 40px 40px;
+  }
+}
+
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ellipsis2 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  word-break: break-all;
+}
+
+.ellipsis3 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  word-break: break-all;
+}
+
+.banner-box {
+  width: 100vw;
+  position: relative;
+  height: 352px;
+  background-image: url("@/assets/images/banner_mobile.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  padding: 30px 40px 0;
+  color: #fff;
+  font-size: 36px;
+  font-weight: 400;
+
+  .logo-img {
+    width: 48px;
+    height: 32px;
+    border-radius: 3px;
+    margin-right: 12px;
+
+    img {
+      height: 100%;
+    }
+  }
+  .logo-text {
+    color: #fff;
+  }
+  .icon-img {
+    width: 32px;
+    height: 32px;
+    margin-right: 24px;
+    margin-left: 24px;
+  }
+  .total-amount{
+    font-size: 32px;
+    margin-top: 16px !important;
+    text-align: center;
+    &.amount-first{
+      margin-top: 64px !important;
+    }
+  }
+  .connect-wallet-btn{
+    background: #fff;
+    display: block;
+    height: 56px;
+    margin: 32px auto 0;
+    color: @main_color;
+    padding: 12px 32px;
+    border-color: @main_color;
+    .van-button__text{
+      font-weight: 400;
+    }
+  }
+}
+

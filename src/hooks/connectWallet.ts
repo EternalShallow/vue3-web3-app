@@ -82,14 +82,14 @@ export default async function initWeb3() {
   });
   const networkVersion = parseInt(window.ethereum.networkVersion, 10);
   console.log(networkVersion, window.ethereum.networkVersion);
-  // if (networkVersion !== 97 && networkVersion !== 56) {
-  //   resolveSelf({
-  //     code: 403,
-  //     message: 'please change BSC network!',
-  //     data: [],
-  //   });
-  //   return promiseSelf;
-  // }
+  if (networkVersion !== 4) {
+    rejectSelf({
+      code: 403,
+      message: 'please change Rinkeby network!',
+      data: [],
+    });
+    return promiseSelf;
+  }
   try {
     const connectWalletResult = await connectWallet();
     resolveSelf(connectWalletResult);
