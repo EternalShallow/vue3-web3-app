@@ -1,3 +1,4 @@
+@import "./fun.less";
 :root {
   // Color Palette
   --van-black: #000;
@@ -129,9 +130,15 @@
 
 
 .van-dialog{
-  //width: unset;
-  //padding-top: var(--van-padding-lg);
+  .van-dialog__message{
+    padding: 36px;
+    text-align: left;
+  }
+  .van-dialog__header{
+    color: @main_color;
+  }
+  .van-dialog__confirm{
+    .primary-btn-bg()
+  }
 }
-.van-dialog__message{
-  padding: 36px;
-}
+

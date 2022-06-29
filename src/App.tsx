@@ -32,6 +32,14 @@ export default defineComponent({
     const walletAddress = computed(() => store.state.walletAddress);
     const { t } = useI18n();
     const connectWalletText = ref(t('connectWallet'));
+    Dialog.alert({
+      title: t('msgTitle'),
+      message: t('tipImport'),
+      theme: 'round-button',
+      confirmButtonText: 'Confirm',
+    }).then((res) => {
+      console.log(res);
+    });
     let btnLoading: boolean;
     btnLoading = false;
     watch(walletAddress, (newVal, oldVal) => {
@@ -151,10 +159,11 @@ export default defineComponent({
             >{connectWalletText}</van-button> : ''
           }
         </div>
+        <div class='title-box'></div>
         <router-view></router-view>
         <van-tabbar modelValue={active} onChange={this.onChange}>
-          <van-tabbar-item icon="home-o">{t('tabList.create')}</van-tabbar-item>
-          <van-tabbar-item icon="search">{t('tabList.records')}</van-tabbar-item>
+          <van-tabbar-item icon="home-o" to={'home'}>{t('tabList.create')}</van-tabbar-item>
+          <van-tabbar-item icon="search" to={'record'}>{t('tabList.records')}</van-tabbar-item>
         </van-tabbar>
       </>
     );

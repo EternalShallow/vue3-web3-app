@@ -7,6 +7,7 @@ import {
   Tabbar,
   TabbarItem,
   ActionSheet,
+  Picker,
 } from 'vant';
 import router from './router/index.ts';
 import store from './store/index.ts';
@@ -28,6 +29,7 @@ const app = createApp(App)
   .use(Button)
   .use(ActionSheet)
   .use(Tabbar)
+  .use(Picker)
   .use(TabbarItem);
 app.mount('#app');
 console.log(app);

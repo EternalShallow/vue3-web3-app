@@ -1,9 +1,14 @@
 import {
   defineComponent, getCurrentInstance, ref,
 } from 'vue';
+import { useI18n } from 'vue-i18n';
+import vTitle from '@/components/vTitle';
 
 export default defineComponent({
   name: 'record',
+  components: {
+    vTitle,
+  },
   setup() {
     const active = ref(0);
     const instance = getCurrentInstance();
@@ -18,14 +23,11 @@ export default defineComponent({
     };
   },
   render() {
-    const { active } = this;
+    const { t } = useI18n();
     return (
-      <van-tabbar modelValue={active} onChange={this.onChange}>
-        <van-tabbar-item icon="home-o">标签</van-tabbar-item>
-        <van-tabbar-item icon="search">标签</van-tabbar-item>
-        <van-tabbar-item icon="friends-o">标签</van-tabbar-item>
-        <van-tabbar-item icon="setting-o">标签</van-tabbar-item>
-      </van-tabbar>
+      <div class='home-box'>
+        <vTitle titleName={t('tradeRecord')}/>
+      </div>
     );
   },
 });
