@@ -8,6 +8,10 @@ import {
   TabbarItem,
   ActionSheet,
   Picker,
+  Popup,
+  Cell,
+  Field,
+  CellGroup,
 } from 'vant';
 import router from './router/index.ts';
 import store from './store/index.ts';
@@ -30,6 +34,10 @@ const app = createApp(App)
   .use(ActionSheet)
   .use(Tabbar)
   .use(Picker)
+  .use(Popup)
+  .use(Cell)
+  .use(Field)
+  .use(CellGroup)
   .use(TabbarItem);
 app.mount('#app');
 console.log(app);

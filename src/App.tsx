@@ -134,7 +134,6 @@ export default defineComponent({
     console.log(connectWalletEl);
     return (
       <>
-        <van-action-sheet modelValue={langValue} actions={langList} select={onSelect}/>
         <div class='banner-box'>
           <div class='display-flex box-center-Y'>
             <div class='logo-img'><img src={logoImg} alt=""/></div>

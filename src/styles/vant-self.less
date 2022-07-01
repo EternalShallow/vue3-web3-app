@@ -1,4 +1,5 @@
 @import "./fun.less";
+@import './main.less';
 :root {
   // Color Palette
   --van-black: #000;
@@ -140,5 +141,34 @@
   .van-dialog__confirm{
     .primary-btn-bg()
   }
+}
+.van-cell{
+  height: 84px;
+  .box-center-Y();
+  padding: 0;
+}
+.van-cell, .van-cell--clickable:active{
+  background-color: transparent;
+}
+
+.van-picker{
+  height: 30%;
+  padding-top: 32px;
+  .van-picker__toolbar{
+    .van-picker__confirm{
+      color: @main_color;
+    }
+  }
+  .van-picker-column__item{
+    color: @main_color;
+  }
+}
+.van-button{
+  font-size: 32px;
+}
+.van-button--primary{
+  .primary-btn-bg();
+  width: 100%;
+  border: none;
 }
 

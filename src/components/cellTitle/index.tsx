@@ -11,8 +11,8 @@ const cellTitle = defineComponent({
     return () => (
       <div class="cell-title display-flex box-center-Y">
         <div class='cell-img'><img src={iconAmount} alt=""/></div>
-        <div>{titleName}</div>
-        {slots.default()}
+        <div class='box-flex1'>{titleName}</div>
+        {slots?.default ? slots?.default() : ''}
       </div>
     );
   },

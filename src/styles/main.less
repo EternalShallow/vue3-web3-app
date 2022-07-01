@@ -26,13 +26,22 @@
 }
 
 /*水平 垂直居中*/
-.box-center-X {
+.box-center-X() {
   justify-content: center; /* 水平居中 */
 }
 
 /*垂直居中*/
-.box-center-Y {
+.box-center-Y() {
   align-items: center; /* 垂直居中 */
+}
+/*水平 垂直居中*/
+.box-center-X {
+  .box-center-X()
+}
+
+/*垂直居中*/
+.box-center-Y {
+  .box-center-Y()
 }
 
 .box-center-end {
@@ -148,6 +157,7 @@
     height: 56px;
     margin: 32px auto 0;
     color: @main_color;
+    width: 360px;
     padding: 12px 32px;
     border-color: @main_color;
     .van-button__text{
